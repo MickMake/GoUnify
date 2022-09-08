@@ -1,5 +1,5 @@
-// module github.com/MickMake/GoUnify/cmdSystray
-module cmdSystray
+// module cmdSystray
+module github.com/MickMake/GoUnify/cmdSystray
 
 go 1.18
 

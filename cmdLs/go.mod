@@ -1,5 +1,5 @@
-// module github.com/MickMake/GoUnify/cmdLs
-module cmdLs
+// module cmdLs
+module github.com/MickMake/GoUnify/cmdLs
 
 go 1.18
 

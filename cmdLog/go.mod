@@ -1,4 +1,4 @@
-// module github.com/MickMake/GoUnify/cmdLog
-module cmdLog
+// module cmdLog
+module github.com/MickMake/GoUnify/cmdLog
 
 go 1.18

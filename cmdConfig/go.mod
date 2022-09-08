@@ -1,5 +1,5 @@
-// module github.com/MickMake/GoUnify/cmdConfig
-module cmdConfig
+// module cmdConfig
+module github.com/MickMake/GoUnify/cmdConfig
 
 go 1.18
 

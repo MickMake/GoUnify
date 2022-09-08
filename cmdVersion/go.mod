@@ -1,5 +1,5 @@
-// module github.com/MickMake/GoUnify/cmdVersion
-module cmdVersion
+// module cmdVersion
+module github.com/MickMake/GoUnify/cmdVersion
 
 go 1.18
 

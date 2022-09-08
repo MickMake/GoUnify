@@ -1,5 +1,5 @@
-// module github.com/MickMake/GoUnify/cmdShell
-module cmdShell
+// module cmdShell
+module github.com/MickMake/GoUnify/cmdShell
 
 go 1.18
 

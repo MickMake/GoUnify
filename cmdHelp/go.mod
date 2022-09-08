@@ -1,5 +1,5 @@
-// module github.com/MickMake/GoUnify/cmdHelp
-module cmdHelp
+// module cmdHelp
+module github.com/MickMake/GoUnify/cmdHelp
 
 go 1.18
 

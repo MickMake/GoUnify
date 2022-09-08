@@ -1,5 +1,5 @@
-// module github.com/MickMake/GoUnify/cmdCron
-module cmdCron
+// module cmdCron
+module github.com/MickMake/GoUnify/cmdCron
 
 go 1.18
 

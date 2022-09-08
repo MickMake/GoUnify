@@ -1,5 +1,5 @@
-// module github.com/MickMake/GoUnify/cmdDaemon
-module cmdDaemon
+// module cmdDaemon
+module github.com/MickMake/GoUnify/cmdDaemon
 
 go 1.18
 
