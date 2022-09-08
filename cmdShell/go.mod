@@ -3,9 +3,9 @@ module github.com/MickMake/GoUnify/cmdShell
 
 go 1.18
 
-replace cmdExec => ../cmdExec
+// replace cmdExec => ../cmdExec
 
-replace cmdHelp => ../cmdHelp
+// replace cmdHelp => ../cmdHelp
 
 require (
 	github.com/MickMake/GoUnify v0.0.0-20220907235858-7d85fe096571

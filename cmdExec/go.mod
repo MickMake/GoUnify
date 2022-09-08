@@ -3,9 +3,9 @@ module github.com/MickMake/GoUnify/cmdExec
 
 go 1.18
 
-replace cmdConfig => ../cmdConfig
+// replace cmdConfig => ../cmdConfig
 
-replace cmdLog => ../cmdLog
+// replace cmdLog => ../cmdLog
 
 require (
 	github.com/MickMake/GoUnify v0.0.0-20220907235858-7d85fe096571

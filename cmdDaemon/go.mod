@@ -3,11 +3,11 @@ module github.com/MickMake/GoUnify/cmdDaemon
 
 go 1.18
 
-replace cmdHelp => ../cmdHelp
+// replace cmdHelp => ../cmdHelp
 
-replace cmdLog => ../cmdLog
+// replace cmdLog => ../cmdLog
 
-replace cmdVersion => ../cmdVersion
+// replace cmdVersion => ../cmdVersion
 
 require (
 	github.com/MickMake/GoUnify v0.0.0-20220907235858-7d85fe096571
