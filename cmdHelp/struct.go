@@ -1,8 +1,8 @@
 package cmdHelp
 
 import (
-	"github.com/MickMake/GoUnify/Only"
 	"fmt"
+	"github.com/MickMake/GoUnify/Only"
 	"github.com/spf13/cobra"
 	"strings"
 )
@@ -11,14 +11,14 @@ import (
 type Help struct {
 	Error error
 
-	Command              string
-	HelpTemplate         string
-	UsageTemplate        string
-	FlagHelpTemplate     string
-	ExtendedHelpTemplate string
-	EnvPrefix            string
-	ReadMe               string
-	Examples             string
+	Command          string
+	HelpTemplate     string
+	UsageTemplate    string
+	FlagHelpTemplate string
+	HelpSummary      string
+	EnvPrefix        string
+	ReadMe           string
+	Examples         string
 
 	cmd     *cobra.Command
 	SelfCmd *cobra.Command
@@ -31,12 +31,12 @@ func New() *Help {
 		ret = &Help{
 			Error: nil,
 
-			Command:              "DefaultBinaryName",
-			HelpTemplate:         DefaultHelpTemplate,
-			UsageTemplate:        DefaultUsageTemplate,
-			FlagHelpTemplate:     DefaultFlagHelpTemplate,
-			ExtendedHelpTemplate: ExtendedHelpTemplate,
-			EnvPrefix:            "",
+			Command:          "DefaultBinaryName",
+			HelpTemplate:     DefaultHelpTemplate,
+			UsageTemplate:    DefaultUsageTemplate,
+			FlagHelpTemplate: DefaultFlagHelpTemplate,
+			HelpSummary:      DefaultHelpSummary,
+			EnvPrefix:        "",
 
 			cmd:     nil,
 			SelfCmd: nil,
@@ -90,13 +90,13 @@ func (h *Help) SetFlagHelpTemplate(text string) {
 	}
 }
 
-func (h *Help) SetExtendedHelpTemplate(text string) {
+func (h *Help) SetHelpSummary(text string) {
 	for range Only.Once {
 		if text == "" {
 			break
 		}
 
-		h.ExtendedHelpTemplate = strings.ReplaceAll(text, "DefaultBinaryName", h.Command)
+		h.HelpSummary = strings.ReplaceAll(text, "DefaultBinaryName", h.Command)
 	}
 }
 
@@ -111,7 +111,7 @@ func (h *Help) SetEnvPrefix(text string) {
 }
 
 func (h *Help) ExtendedHelp() {
-	fmt.Println(h.ExtendedHelpTemplate)
+	fmt.Println(h.HelpSummary)
 }
 
 func (h *Help) SetReadMe(text string) {

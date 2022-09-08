@@ -42,7 +42,7 @@ type Options struct {
 	SourceRepo    string `json:"source_repo"`
 	BinaryRepo    string `json:"binary_repo"`
 	EnvPrefix     string `json:"env_prefix"`
-	HelpTemplate  string `json:"help_template"`
+	HelpSummary   string `json:"help_template"`
 	ReadMe        string `json:"readme"`
 	Examples      string `json:"examples"`
 }
@@ -114,7 +114,7 @@ func (u *Unify) InitCmds() error {
 
 		u.Commands.CmdHelp = cmdHelp.New()
 		u.Commands.CmdHelp.SetCommand(u.Options.BinaryName)
-		u.Commands.CmdHelp.SetExtendedHelpTemplate(u.Options.HelpTemplate)
+		u.Commands.CmdHelp.SetHelpSummary(u.Options.HelpSummary)
 		u.Commands.CmdHelp.SetEnvPrefix(u.Options.EnvPrefix)
 		u.Commands.CmdHelp.SetReadMe(u.Options.ReadMe)
 		u.Commands.CmdHelp.SetExamples(u.Options.Examples)

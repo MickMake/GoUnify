@@ -35,6 +35,6 @@ const DefaultFlagHelpTemplate = `{{if .HasAvailableInheritedFlags}}Flags availab
 {{.InheritedFlags.FlagUsages | trimTrailingWhitespaces}}{{end}}
 `
 
-const ExtendedHelpTemplate = `
+const DefaultHelpSummary = `
 DefaultBinaryName - 
 `

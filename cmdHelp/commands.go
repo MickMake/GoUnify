@@ -120,7 +120,6 @@ Use "{{ExecStyle .CommandPath}} help [command]" for more information about a com
 func (h *Help) CmdHelp(cmd *cobra.Command, args []string) error {
 	for range Only.Once {
 		if cmd.Name() == cmdHelpFlags {
-			h.ExtendedHelp()
 			h.PrintConfig(h.cmd)
 			break
 		}
@@ -161,6 +160,7 @@ func (h *Help) CmdHelp(cmd *cobra.Command, args []string) error {
 
 		if len(args) == 0 {
 			// h.cmd.SetVersionTemplate("")
+			h.ExtendedHelp()
 
 			cmd.SetHelpTemplate(DHT)
 			h.cmd.SetUsageTemplate(DUT1)
