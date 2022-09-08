@@ -1,4 +1,4 @@
-// Package GoUnify - This package contains common functionality that's used across multiple binaries.
+// Package Unify - This package contains common functionality that's used across multiple binaries.
 // It's an easy way to include some important functionality into every binary.
 // Currently, it provides:
 // - Cron scheduler.
@@ -7,7 +7,7 @@
 // - Version control and self-update.
 // - Cobra/Viper integration.
 // - Interactive shell based on Cobra CLI commands.
-package GoUnify
+package Unify
 
 import (
 	"errors"

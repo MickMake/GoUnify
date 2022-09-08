@@ -1,4 +1,4 @@
-package GoUnify
+package Unify
 
 // // SystrayAddMenuItem -
 // func (u *Unify) SystrayAddMenuItem(name string) *cmdSystray.Item {

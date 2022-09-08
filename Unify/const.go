@@ -1,4 +1,4 @@
-package GoUnify
+package Unify
 
 import "time"
 

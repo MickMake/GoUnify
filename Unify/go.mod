@@ -1,5 +1,5 @@
-// module GoUnify
-module github.com/MickMake/GoUnify/GoUnify
+// module Unify
+module github.com/MickMake/GoUnify/Unify
 
 go 1.18
 
