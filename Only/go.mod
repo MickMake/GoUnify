@@ -1,3 +1,5 @@
-module github.com/MickMake/GoUnify/Only
+module Only
+
+// module github.com/MickMake/GoUnify/Only
 
 go 1.18
