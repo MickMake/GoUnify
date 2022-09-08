@@ -120,6 +120,7 @@ Use "{{ExecStyle .CommandPath}} help [command]" for more information about a com
 func (h *Help) CmdHelp(cmd *cobra.Command, args []string) error {
 	for range Only.Once {
 		if cmd.Name() == cmdHelpFlags {
+			h.ExtendedHelp()
 			h.PrintConfig(h.cmd)
 			break
 		}
