@@ -1,5 +1,5 @@
-// module github.com/MickMake/GoUnify/cmdExec
-module cmdExec
+module github.com/MickMake/GoUnify/cmdExec
+// module cmdExec
 
 go 1.18
 
