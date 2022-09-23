@@ -1,34 +1,21 @@
-// module cmdShell
 module github.com/MickMake/GoUnify/cmdShell
 
 go 1.18
 
-// replace github.com/MickMake/GoUnify/Only => ../Only
+replace github.com/MickMake/GoUnify/Only => ../Only
 
-// replace github.com/MickMake/GoUnify/cmdConfig => ../cmdConfig
+replace github.com/MickMake/GoUnify/cmdExec => ../cmdExec
 
-// replace github.com/MickMake/GoUnify/cmdCron => ../cmdCron
+replace github.com/MickMake/GoUnify/cmdHelp => ../cmdHelp
 
-// replace github.com/MickMake/GoUnify/cmdDaemon => ../cmdDaemon
+replace github.com/MickMake/GoUnify/cmdConfig => ../cmdConfig
 
-// replace github.com/MickMake/GoUnify/cmdExec => ../cmdExec
-
-// replace github.com/MickMake/GoUnify/cmdHelp => ../cmdHelp
-
-// replace github.com/MickMake/GoUnify/cmdLog => ../cmdLog
-
-// replace github.com/MickMake/GoUnify/cmdLs => ../cmdLs
-
-// replace github.com/MickMake/GoUnify/cmdShell => ../cmdShell
-
-// replace github.com/MickMake/GoUnify/cmdSystray => ../cmdSystray
-
-// replace github.com/MickMake/GoUnify/cmdVersion => ../cmdVersion
+replace github.com/MickMake/GoUnify/cmdLog => ../cmdLog
 
 require (
-	github.com/MickMake/GoUnify/Only v0.0.0-20220908013953-d08885c48e74
-	github.com/MickMake/GoUnify/cmdExec v0.0.0-20220908013953-d08885c48e74
-	github.com/MickMake/GoUnify/cmdHelp v0.0.0-20220908013953-d08885c48e74
+	github.com/MickMake/GoUnify/Only v0.0.0-00010101000000-000000000000
+	github.com/MickMake/GoUnify/cmdExec v0.0.0-00010101000000-000000000000
+	github.com/MickMake/GoUnify/cmdHelp v0.0.0-00010101000000-000000000000
 	github.com/abiosoft/ishell/v2 v2.0.2
 	github.com/briandowns/spinner v1.19.0
 	github.com/spf13/cobra v1.5.0
@@ -37,7 +24,9 @@ require (
 require (
 	github.com/MichaelMure/go-term-markdown v0.1.4 // indirect
 	github.com/MichaelMure/go-term-text v0.3.1 // indirect
-	github.com/MickMake/GoUnify v0.0.0-20220907235858-7d85fe096571 // indirect
+	github.com/MickMake/GoUnify/cmdConfig v0.0.0-00010101000000-000000000000 // indirect
+	github.com/MickMake/GoUnify/cmdLog v0.0.0-00010101000000-000000000000 // indirect
+	github.com/abiosoft/ishell v2.0.0+incompatible // indirect
 	github.com/abiosoft/readline v0.0.0-20180607040430-155bce2042db // indirect
 	github.com/alecthomas/chroma v0.7.1 // indirect
 	github.com/danwakefield/fnmatch v0.0.0-20160403171240-cbb64ac3d964 // indirect
@@ -53,8 +42,8 @@ require (
 	github.com/kyokomi/emoji/v2 v2.2.8 // indirect
 	github.com/lucasb-eyer/go-colorful v1.0.3 // indirect
 	github.com/magiconair/properties v1.8.6 // indirect
-	github.com/mattn/go-colorable v0.1.13 // indirect
-	github.com/mattn/go-isatty v0.0.16 // indirect
+	github.com/mattn/go-colorable v0.1.12 // indirect
+	github.com/mattn/go-isatty v0.0.14 // indirect
 	github.com/mattn/go-runewidth v0.0.12 // indirect
 	github.com/mitchellh/mapstructure v1.5.0 // indirect
 	github.com/olekukonko/tablewriter v0.0.5 // indirect
@@ -68,8 +57,8 @@ require (
 	github.com/spf13/viper v1.13.0 // indirect
 	github.com/subosito/gotenv v1.4.1 // indirect
 	golang.org/x/image v0.0.0-20191206065243-da761ea9ff43 // indirect
-	golang.org/x/net v0.0.0-20220624214902-1bab6f366d9e // indirect
-	golang.org/x/sys v0.0.0-20220907062415-87db552b00fd // indirect
+	golang.org/x/net v0.0.0-20220520000938-2e3eb7b945c2 // indirect
+	golang.org/x/sys v0.0.0-20220520151302-bc2c85ada10a // indirect
 	golang.org/x/text v0.3.7 // indirect
 	gopkg.in/ini.v1 v1.67.0 // indirect
 	gopkg.in/yaml.v2 v2.4.0 // indirect

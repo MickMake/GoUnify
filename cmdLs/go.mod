@@ -1,4 +1,3 @@
-// module cmdLs
 module github.com/MickMake/GoUnify/cmdLs
 
 go 1.18
@@ -7,7 +6,7 @@ require (
 	github.com/acarl005/textcol v0.0.0
 	github.com/mattn/go-colorable v0.1.13
 	github.com/willf/pad v0.0.0-20200313202418-172aa767f2a4
-	golang.org/x/sys v0.0.0-20220907062415-87db552b00fd
+	golang.org/x/sys v0.0.0-20220919091848-fb04ddd9f9c8
 	gopkg.in/alecthomas/kingpin.v2 v2.2.6
 )
 
