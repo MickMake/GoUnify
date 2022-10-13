@@ -10,10 +10,13 @@ replace github.com/MickMake/GoUnify/cmdLog => ../cmdLog
 
 replace github.com/MickMake/GoUnify/cmdVersion => ../cmdVersion
 
+replace github.com/MickMake/GoUnify/cmdPath => ../cmdPath
+
 require (
 	github.com/MickMake/GoUnify/Only v0.0.0-00010101000000-000000000000
 	github.com/MickMake/GoUnify/cmdHelp v0.0.0-00010101000000-000000000000
 	github.com/MickMake/GoUnify/cmdLog v0.0.0-00010101000000-000000000000
+	github.com/MickMake/GoUnify/cmdPath v0.0.0-00010101000000-000000000000
 	github.com/MickMake/GoUnify/cmdVersion v0.0.0-00010101000000-000000000000
 	github.com/sevlyar/go-daemon v0.1.6
 	github.com/spf13/cobra v1.5.0

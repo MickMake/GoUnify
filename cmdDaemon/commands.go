@@ -1,17 +1,18 @@
 package cmdDaemon
 
 import (
+	"fmt"
 	"github.com/MickMake/GoUnify/Only"
 	"github.com/MickMake/GoUnify/cmdHelp"
 	"github.com/MickMake/GoUnify/cmdLog"
-	"github.com/MickMake/GoUnify/cmdVersion"
-	"fmt"
+	"github.com/MickMake/GoUnify/cmdPath"
 	"github.com/sevlyar/go-daemon"
 	"github.com/spf13/cobra"
 	"os"
 	"strings"
 	"syscall"
 )
+
 
 const Group = "Daemon"
 
@@ -241,7 +242,7 @@ func (d *Daemon) CmdDaemonKill() error {
 
 		d.Error = d.cntxt.Release()
 
-		if cmdVersion.NewPath(d.cntxt.PidFileName).FileExists() {
+		if cmdPath.NewPath(d.cntxt.PidFileName).FileExists() {
 			// @TODO - Workaround for Mac OSX.
 			d.Error = os.Remove(d.cntxt.PidFileName)
 			if d.Error != nil {

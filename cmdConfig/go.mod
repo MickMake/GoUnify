@@ -6,9 +6,12 @@ replace github.com/MickMake/GoUnify/Only => ../Only
 
 replace github.com/MickMake/GoUnify/cmdHelp => ../cmdHelp
 
+replace github.com/MickMake/GoUnify/cmdPath => ../cmdPath
+
 require (
 	github.com/MickMake/GoUnify/Only v0.0.0-00010101000000-000000000000
 	github.com/MickMake/GoUnify/cmdHelp v0.0.0-00010101000000-000000000000
+	github.com/MickMake/GoUnify/cmdPath v0.0.0-00010101000000-000000000000
 	github.com/olekukonko/tablewriter v0.0.5
 	github.com/spf13/cobra v1.5.0
 	github.com/spf13/pflag v1.0.5

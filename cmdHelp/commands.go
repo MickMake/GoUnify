@@ -136,7 +136,8 @@ func (h *Help) CmdHelp(cmd *cobra.Command, args []string) error {
 				}
 			}
 
-			result := markdown.Render(h.ReadMe, w, 6)
+			fmt.Println("Generating README file...")
+			result := markdown.Render(h.ReadMe, w, 6, markdown.WithImageDithering(markdown.DitheringWithBlocks))
 			fmt.Printf("%s", result)
 			break
 		}

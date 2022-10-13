@@ -157,8 +157,27 @@ func (u *Unify) Execute() error {
 		u.Commands.CmdConfig.AttachCommands(u.Commands.CmdRoot)
 		u.Commands.CmdShell.AttachCommands(u.Commands.CmdRoot)
 		u.Commands.CmdHelp.AttachCommands(u.Commands.CmdRoot)
-		u.Commands.CmdConfig.SetDir(u.Flags.ConfigDir)
-		u.Commands.CmdConfig.SetFile(u.Flags.ConfigFile)
+
+		if u.Flags.ConfigDir != "" {
+			u.Commands.CmdConfig.SetDir(u.Flags.ConfigDir)
+		} else {
+			u.Flags.ConfigDir = u.Commands.CmdConfig.Dir
+		}
+
+		if u.Flags.ConfigFile != "" {
+			u.Commands.CmdConfig.SetFile(u.Flags.ConfigFile)
+		} else {
+			u.Flags.ConfigFile = u.Commands.CmdConfig.File
+		}
+
+		if u.Flags.CacheDir == "" {
+			u.Flags.CacheDir = u.GetCacheDir()
+		}
+
+		if u.Flags.Timeout == 0 {
+			u.Flags.Timeout = defaultTimeout
+		}
+
 		u.Commands.CmdRoot.PersistentPreRunE = func(cmd *cobra.Command, args []string) error {
 			// You can bind cobra and viper in a few locations, but PersistencePreRunE on the root command works well
 			return u.Commands.CmdConfig.Init(cmd)

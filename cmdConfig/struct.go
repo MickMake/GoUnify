@@ -3,6 +3,7 @@ package cmdConfig
 import (
 	"fmt"
 	"github.com/MickMake/GoUnify/Only"
+	"github.com/MickMake/GoUnify/cmdPath"
 	"github.com/spf13/cobra"
 	"github.com/spf13/pflag"
 	"github.com/spf13/viper"
@@ -24,6 +25,7 @@ type Config struct {
 	cmd     *cobra.Command
 	SelfCmd *cobra.Command
 }
+
 
 func New(name string, version string, envPrefix string) *Config {
 	var ret *Config
@@ -91,14 +93,25 @@ func (c *Config) SetDir(path string) {
 		}
 		c.Dir = path
 		c.viper.AddConfigPath(c.Dir)
-		_, c.Error = os.Stat(c.Dir)
-		if os.IsExist(c.Error) {
+
+		p := cmdPath.NewPath(c.Dir)
+		if p.DirExists() {
 			break
 		}
-		c.Error = os.MkdirAll(c.Dir, 0700)
+
+		c.Error = p.MkdirAll()
 		if c.Error != nil {
 			break
 		}
+
+		// _, c.Error = os.Stat(c.Dir)
+		// if !os.IsNotExist(c.Error) {
+		// 	break
+		// }
+		// c.Error = os.MkdirAll(c.Dir, 0700)
+		// if c.Error != nil {
+		// 	break
+		// }
 	}
 }
 
@@ -126,7 +139,7 @@ func (c *Config) SetPath(path string) {
 		}
 		c.SetDir(dir)
 
-		path = filepath.Base(path)
+		// path = filepath.Base(path)
 		c.SetFile(path)
 	}
 }
@@ -228,10 +241,10 @@ func (c *Config) Open() error {
 		if os.IsNotExist(c.Error) {
 			c.cmd.Flags().VisitAll(func(f *pflag.Flag) {
 				switch f.Value.Type() {
-				case "duration":
-					c.viper.SetDefault(f.Name, f.Value.String())
-				default:
-					c.viper.SetDefault(f.Name, f.Value)
+					case "duration":
+						c.viper.SetDefault(f.Name, f.Value.String())
+					default:
+						c.viper.SetDefault(f.Name, f.Value)
 				}
 			})
 

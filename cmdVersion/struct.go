@@ -1,8 +1,9 @@
 package cmdVersion
 
 import (
-	"github.com/MickMake/GoUnify/Only"
 	"fmt"
+	"github.com/MickMake/GoUnify/Only"
+	"github.com/MickMake/GoUnify/cmdPath"
 	"github.com/kardianos/osext"
 	"github.com/rhysd/go-github-selfupdate/selfupdate"
 	"github.com/spf13/cobra"
@@ -52,12 +53,12 @@ type Version struct {
 	CmdDir  string `json:"cmd_dir" mapstructure:"cmd_dir"`
 	CmdFile string `json:"cmd_file" mapstructure:"cmd_file"`
 
-	WorkingDir Path `json:"working_dir" mapstructure:"working_dir"`
-	BaseDir    Path `json:"base_dir" mapstructure:"base_dir"`
-	BinDir     Path `json:"bin_dir" mapstructure:"bin_dir"`
-	ConfigDir  Path `json:"config_dir" mapstructure:"config_dir"`
-	CacheDir   Path `json:"cache_dir" mapstructure:"cache_dir"`
-	TempDir    Path `json:"temp_dir" mapstructure:"temp_dir"`
+	WorkingDir *cmdPath.Path `json:"working_dir" mapstructure:"working_dir"`
+	BaseDir    *cmdPath.Path `json:"base_dir" mapstructure:"base_dir"`
+	BinDir     *cmdPath.Path `json:"bin_dir" mapstructure:"bin_dir"`
+	ConfigDir  *cmdPath.Path `json:"config_dir" mapstructure:"config_dir"`
+	CacheDir   *cmdPath.Path `json:"cache_dir" mapstructure:"cache_dir"`
+	TempDir    *cmdPath.Path `json:"temp_dir" mapstructure:"temp_dir"`
 
 	FullArgs ExecArgs `json:"full_args" mapstructure:"full_args"`
 	Args     ExecArgs `json:"args" mapstructure:"args"`
@@ -264,12 +265,12 @@ func New(binary string, version string, debugFlag bool) *Version {
 			CmdDir:  "",
 			CmdFile: "",
 
-			WorkingDir: ".",
-			BaseDir:    ".",
-			BinDir:     ".",
-			ConfigDir:  ".",
-			CacheDir:   ".",
-			TempDir:    ".",
+			WorkingDir: &cmdPath.Path{},
+			BaseDir:    &cmdPath.Path{},
+			BinDir:     &cmdPath.Path{},
+			ConfigDir:  &cmdPath.Path{},
+			CacheDir:   &cmdPath.Path{},
+			TempDir:    &cmdPath.Path{},
 
 			FullArgs: os.Args,
 			Args:     os.Args[1:],
@@ -340,53 +341,57 @@ func New(binary string, version string, debugFlag bool) *Version {
 		//if runtime.GOOS == "windows" {
 		//	ret.BaseDir = ""
 		//} else {
-		ret.BaseDir.Set(ret.User.HomeDir, "."+ret.ExecName)
+		ret.BaseDir.Set(ret.User.HomeDir, "." + ret.ExecName)
 		//}
 
 		//if runtime.GOOS == "windows" {
 		//	ret.BinDir = ""
 		//} else {
-		ret.BinDir = ret.BaseDir.Join("bin")
+		// ret.BinDir = ret.BaseDir.Join("bin")
+		ret.BinDir.Set(ret.BaseDir.String(), "bin")
 		//}
 
 		p, err = os.UserConfigDir()
 		if err != nil {
 			if runtime.GOOS == "windows" {
-				ret.ConfigDir = ""
+				ret.ConfigDir = cmdPath.NewPath("")
 			} else {
-				ret.ConfigDir = "."
+				ret.ConfigDir = cmdPath.NewPath(".")
 			}
 		} else {
-			ret.ConfigDir = ret.BaseDir.Join("etc")
+			// ret.ConfigDir = ret.BaseDir.Join("etc")
+			ret.ConfigDir.Set(ret.BaseDir.String(), "etc")
 		}
 		//ret.ConfigDir = filepath.Join(ret.ConfigDir, ret.CmdName)
 
 		p, err = os.UserCacheDir()
 		if err != nil {
 			if runtime.GOOS == "windows" {
-				ret.CacheDir = ""
+				ret.CacheDir = cmdPath.NewPath("")
 			} else {
-				ret.CacheDir = "."
+				ret.CacheDir = cmdPath.NewPath(".")
 			}
 		} else {
-			ret.CacheDir = ret.BaseDir.Join("cache")
+			// ret.CacheDir = ret.BaseDir.Join("cache")
+			ret.CacheDir.Set(ret.BaseDir.String(), "cache")
 		}
 		//ret.CacheDir = filepath.Join(ret.CacheDir, ret.CmdName)
 
 		p = os.TempDir()
-		if ret.TempDir == "" {
+		if ret.TempDir.String() == "" {
 			if runtime.GOOS == "windows" {
-				ret.TempDir = "C:\\tmp"
+				ret.TempDir = cmdPath.NewPath("C:\\tmp")
 			} else {
-				ret.TempDir = "/tmp"
+				ret.TempDir = cmdPath.NewPath("/tmp")
 			}
 		} else {
-			ret.TempDir = ret.BaseDir.Join("tmp")
+			// ret.TempDir = ret.BaseDir.Join("tmp")
+			ret.TempDir.Set(ret.BaseDir.String(), "tmp")
 		}
 
 		// ******************************************************************************** //
 		ret.TargetBinary = ret.Cmd
-		ret.RuntimeBinary = ResolveFile(ret.Cmd)
+		ret.RuntimeBinary = cmdPath.ResolveFile(ret.Cmd)
 		ret.AutoExec = false
 
 		ret.logging = toBoolValue(ret.Debug)

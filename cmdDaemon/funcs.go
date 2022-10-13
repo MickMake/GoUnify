@@ -1,9 +1,9 @@
 package cmdDaemon
 
 import (
-	"github.com/MickMake/GoUnify/Only"
-	"github.com/MickMake/GoUnify/cmdVersion"
 	"fmt"
+	"github.com/MickMake/GoUnify/Only"
+	"github.com/MickMake/GoUnify/cmdPath"
 	"github.com/sevlyar/go-daemon"
 	"log"
 	"os"
@@ -12,6 +12,7 @@ import (
 	"syscall"
 	"time"
 )
+
 
 func (d *Daemon) ReadPid() int {
 	ret := -1
@@ -25,7 +26,7 @@ func (d *Daemon) ReadPid() int {
 			break
 		}
 
-		if !cmdVersion.NewPath(d.cntxt.PidFileName).FileExists() {
+		if !cmdPath.NewPath(d.cntxt.PidFileName).FileExists() {
 			// if !mmWebcam.FileExists(pidFile) {
 			ret = -1
 			break

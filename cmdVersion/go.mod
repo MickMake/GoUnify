@@ -8,10 +8,13 @@ replace github.com/MickMake/GoUnify/cmdHelp => ../cmdHelp
 
 replace github.com/MickMake/GoUnify/cmdLog => ../cmdLog
 
+replace github.com/MickMake/GoUnify/cmdPath => ../cmdPath
+
 require (
 	github.com/MickMake/GoUnify/Only v0.0.0-00010101000000-000000000000
 	github.com/MickMake/GoUnify/cmdHelp v0.0.0-00010101000000-000000000000
 	github.com/MickMake/GoUnify/cmdLog v0.0.0-00010101000000-000000000000
+	github.com/MickMake/GoUnify/cmdPath v0.0.0-00010101000000-000000000000
 	github.com/blang/semver v3.5.1+incompatible
 	github.com/google/go-github/v30 v30.1.0
 	github.com/kardianos/osext v0.0.0-20190222173326-2bc1f35cddc0
