@@ -8,3 +8,4 @@ go 1.19
 // replace github.com/MickMake/GoUnify/cmdVersion => ./cmdVersion
 // replace github.com/MickMake/GoUnify/cmdLog => ./cmdLog
 
+require github.com/MickMake/GoUnify/Only v0.0.0-20221125023651-ff4a37b1928a // indirect
