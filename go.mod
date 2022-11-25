@@ -1,22 +1,22 @@
 module github.com/MickMake/GoUnify
 
-go 1.18
+go 1.19
 
-replace github.com/MickMake/GoUnify/Only => ./Only
+// replace github.com/MickMake/GoUnify/Only => ./Only
 
-replace github.com/MickMake/GoUnify/cmdConfig => ./cmdConfig
+// replace github.com/MickMake/GoUnify/cmdConfig => ./cmdConfig
 
-replace github.com/MickMake/GoUnify/cmdHelp => ./cmdHelp
+// replace github.com/MickMake/GoUnify/cmdHelp => ./cmdHelp
 
-replace github.com/MickMake/GoUnify/cmdVersion => ./cmdVersion
+// replace github.com/MickMake/GoUnify/cmdVersion => ./cmdVersion
 
-replace github.com/MickMake/GoUnify/cmdLog => ./cmdLog
+// replace github.com/MickMake/GoUnify/cmdLog => ./cmdLog
 
 require (
-	github.com/MickMake/GoUnify/Only v0.0.0-00010101000000-000000000000
-	github.com/MickMake/GoUnify/cmdConfig v0.0.0-00010101000000-000000000000
-	github.com/MickMake/GoUnify/cmdHelp v0.0.0-00010101000000-000000000000
-	github.com/MickMake/GoUnify/cmdVersion v0.0.0-00010101000000-000000000000
+	github.com/MickMake/GoUnify/Only latest
+	github.com/MickMake/GoUnify/cmdConfig latest
+	github.com/MickMake/GoUnify/cmdHelp latest
+	github.com/MickMake/GoUnify/cmdVersion latest
 	github.com/getlantern/systray v1.2.1
 	github.com/spf13/cobra v1.5.0
 	github.com/zserge/lorca v0.1.10
@@ -25,7 +25,7 @@ require (
 require (
 	github.com/MichaelMure/go-term-markdown v0.1.4 // indirect
 	github.com/MichaelMure/go-term-text v0.3.1 // indirect
-	github.com/MickMake/GoUnify/cmdLog v0.0.0-00010101000000-000000000000 // indirect
+	github.com/MickMake/GoUnify/cmdLog latest // indirect
 	github.com/alecthomas/chroma v0.7.1 // indirect
 	github.com/blang/semver v3.5.1+incompatible // indirect
 	github.com/danwakefield/fnmatch v0.0.0-20160403171240-cbb64ac3d964 // indirect

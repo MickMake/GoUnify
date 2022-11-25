@@ -1,33 +1,33 @@
 module github.com/MickMake/GoUnify/Unify
 
-go 1.18
+go 1.19
 
-replace github.com/MickMake/GoUnify/Only => ../Only
+// replace github.com/MickMake/GoUnify/Only => ../Only
 
-replace github.com/MickMake/GoUnify/cmdConfig => ../cmdConfig
+// replace github.com/MickMake/GoUnify/cmdConfig => ../cmdConfig
 
-replace github.com/MickMake/GoUnify/cmdCron => ../cmdCron
+// replace github.com/MickMake/GoUnify/cmdCron => ../cmdCron
 
-replace github.com/MickMake/GoUnify/cmdDaemon => ../cmdDaemon
+// replace github.com/MickMake/GoUnify/cmdDaemon => ../cmdDaemon
 
-replace github.com/MickMake/GoUnify/cmdHelp => ../cmdHelp
+// replace github.com/MickMake/GoUnify/cmdHelp => ../cmdHelp
 
-replace github.com/MickMake/GoUnify/cmdShell => ../cmdShell
+// replace github.com/MickMake/GoUnify/cmdShell => ../cmdShell
 
-replace github.com/MickMake/GoUnify/cmdVersion => ../cmdVersion
+// replace github.com/MickMake/GoUnify/cmdVersion => ../cmdVersion
 
-replace github.com/MickMake/GoUnify/cmdExec => ../cmdExec
+// replace github.com/MickMake/GoUnify/cmdExec => ../cmdExec
 
-replace github.com/MickMake/GoUnify/cmdLog => ../cmdLog
+// replace github.com/MickMake/GoUnify/cmdLog => ../cmdLog
 
 require (
-	github.com/MickMake/GoUnify/Only v0.0.0-00010101000000-000000000000
-	github.com/MickMake/GoUnify/cmdConfig v0.0.0-00010101000000-000000000000
-	github.com/MickMake/GoUnify/cmdCron v0.0.0-00010101000000-000000000000
-	github.com/MickMake/GoUnify/cmdDaemon v0.0.0-00010101000000-000000000000
-	github.com/MickMake/GoUnify/cmdHelp v0.0.0-00010101000000-000000000000
-	github.com/MickMake/GoUnify/cmdShell v0.0.0-00010101000000-000000000000
-	github.com/MickMake/GoUnify/cmdVersion v0.0.0-00010101000000-000000000000
+	github.com/MickMake/GoUnify/Only latest
+	github.com/MickMake/GoUnify/cmdConfig latest
+	github.com/MickMake/GoUnify/cmdCron latest
+	github.com/MickMake/GoUnify/cmdDaemon latest
+	github.com/MickMake/GoUnify/cmdHelp latest
+	github.com/MickMake/GoUnify/cmdShell latest
+	github.com/MickMake/GoUnify/cmdVersion latest
 	github.com/ivanpirog/coloredcobra v1.0.1
 	github.com/spf13/cobra v1.5.0
 	github.com/spf13/viper v1.13.0
@@ -36,8 +36,8 @@ require (
 require (
 	github.com/MichaelMure/go-term-markdown v0.1.4 // indirect
 	github.com/MichaelMure/go-term-text v0.3.1 // indirect
-	github.com/MickMake/GoUnify/cmdExec v0.0.0-00010101000000-000000000000 // indirect
-	github.com/MickMake/GoUnify/cmdLog v0.0.0-00010101000000-000000000000 // indirect
+	github.com/MickMake/GoUnify/cmdExec latest // indirect
+	github.com/MickMake/GoUnify/cmdLog latest // indirect
 	github.com/abiosoft/ishell/v2 v2.0.2 // indirect
 	github.com/abiosoft/readline v0.0.0-20180607040430-155bce2042db // indirect
 	github.com/alecthomas/chroma v0.7.1 // indirect

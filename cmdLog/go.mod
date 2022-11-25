@@ -1,7 +1,7 @@
 module github.com/MickMake/GoUnify/cmdLog
 
-go 1.18
+go 1.19
 
-replace github.com/MickMake/GoUnify/Only => ../Only
+// replace github.com/MickMake/GoUnify/Only => ../Only
 
-require github.com/MickMake/GoUnify/Only v0.0.0-00010101000000-000000000000
+require github.com/MickMake/GoUnify/Only latest

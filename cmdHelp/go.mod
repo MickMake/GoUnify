@@ -1,12 +1,12 @@
 module github.com/MickMake/GoUnify/cmdHelp
 
-go 1.18
+go 1.19
 
-replace github.com/MickMake/GoUnify/Only => ../Only
+// replace github.com/MickMake/GoUnify/Only => ../Only
 
 require (
 	github.com/MichaelMure/go-term-markdown v0.1.4
-	github.com/MickMake/GoUnify/Only v0.0.0-00010101000000-000000000000
+	github.com/MickMake/GoUnify/Only latest
 	github.com/olekukonko/tablewriter v0.0.5
 	github.com/spf13/cobra v1.5.0
 	github.com/spf13/pflag v1.0.5

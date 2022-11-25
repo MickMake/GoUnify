@@ -1,6 +1,6 @@
 module github.com/MickMake/GoUnify/cmdLs
 
-go 1.18
+go 1.19
 
 require (
 	github.com/acarl005/textcol v0.0.0
