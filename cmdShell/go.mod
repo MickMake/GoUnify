@@ -13,9 +13,9 @@ go 1.19
 // replace github.com/MickMake/GoUnify/cmdLog => ../cmdLog
 
 require (
-	github.com/MickMake/GoUnify/Only latest
-	github.com/MickMake/GoUnify/cmdExec latest
-	github.com/MickMake/GoUnify/cmdHelp latest
+	github.com/MickMake/GoUnify/Only v1.0.2
+	github.com/MickMake/GoUnify/cmdExec v1.0.2
+	github.com/MickMake/GoUnify/cmdHelp v1.0.2
 	github.com/abiosoft/ishell/v2 v2.0.2
 	github.com/briandowns/spinner v1.19.0
 	github.com/spf13/cobra v1.5.0
@@ -24,8 +24,8 @@ require (
 require (
 	github.com/MichaelMure/go-term-markdown v0.1.4 // indirect
 	github.com/MichaelMure/go-term-text v0.3.1 // indirect
-	github.com/MickMake/GoUnify/cmdConfig latest // indirect
-	github.com/MickMake/GoUnify/cmdLog latest // indirect
+	github.com/MickMake/GoUnify/cmdConfig v1.0.2
+	github.com/MickMake/GoUnify/cmdLog v1.0.2
 	github.com/abiosoft/ishell v2.0.0+incompatible // indirect
 	github.com/abiosoft/readline v0.0.0-20180607040430-155bce2042db // indirect
 	github.com/alecthomas/chroma v0.7.1 // indirect

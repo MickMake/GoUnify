@@ -13,11 +13,11 @@ go 1.19
 // replace github.com/MickMake/GoUnify/cmdPath => ../cmdPath
 
 require (
-	github.com/MickMake/GoUnify/Only latest
-	github.com/MickMake/GoUnify/cmdHelp latest
-	github.com/MickMake/GoUnify/cmdLog latest
-	github.com/MickMake/GoUnify/cmdPath latest
-	github.com/MickMake/GoUnify/cmdVersion latest
+	github.com/MickMake/GoUnify/Only v1.0.2
+	github.com/MickMake/GoUnify/cmdHelp v1.0.2
+	github.com/MickMake/GoUnify/cmdLog v1.0.2
+	github.com/MickMake/GoUnify/cmdPath v1.0.2
+	github.com/MickMake/GoUnify/cmdVersion v1.0.2
 	github.com/sevlyar/go-daemon v0.1.6
 	github.com/spf13/cobra v1.5.0
 )

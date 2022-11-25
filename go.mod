@@ -13,10 +13,10 @@ go 1.19
 // replace github.com/MickMake/GoUnify/cmdLog => ./cmdLog
 
 require (
-	github.com/MickMake/GoUnify/Only latest
-	github.com/MickMake/GoUnify/cmdConfig latest
-	github.com/MickMake/GoUnify/cmdHelp latest
-	github.com/MickMake/GoUnify/cmdVersion latest
+	github.com/MickMake/GoUnify/Only v1.0.2
+	github.com/MickMake/GoUnify/cmdConfig v1.0.2
+	github.com/MickMake/GoUnify/cmdHelp v1.0.2
+	github.com/MickMake/GoUnify/cmdVersion v1.0.2
 	github.com/getlantern/systray v1.2.1
 	github.com/spf13/cobra v1.5.0
 	github.com/zserge/lorca v0.1.10
@@ -25,7 +25,7 @@ require (
 require (
 	github.com/MichaelMure/go-term-markdown v0.1.4 // indirect
 	github.com/MichaelMure/go-term-text v0.3.1 // indirect
-	github.com/MickMake/GoUnify/cmdLog latest // indirect
+	github.com/MickMake/GoUnify/cmdLog v1.0.2
 	github.com/alecthomas/chroma v0.7.1 // indirect
 	github.com/blang/semver v3.5.1+incompatible // indirect
 	github.com/danwakefield/fnmatch v0.0.0-20160403171240-cbb64ac3d964 // indirect

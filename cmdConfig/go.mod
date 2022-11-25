@@ -9,9 +9,9 @@ go 1.19
 // replace github.com/MickMake/GoUnify/cmdPath => ../cmdPath
 
 require (
-	github.com/MickMake/GoUnify/Only latest
-	github.com/MickMake/GoUnify/cmdHelp latest
-	github.com/MickMake/GoUnify/cmdPath latest
+	github.com/MickMake/GoUnify/Only v1.0.2
+	github.com/MickMake/GoUnify/cmdHelp v1.0.2
+	github.com/MickMake/GoUnify/cmdPath v1.0.2
 	github.com/olekukonko/tablewriter v0.0.5
 	github.com/spf13/cobra v1.5.0
 	github.com/spf13/pflag v1.0.5
