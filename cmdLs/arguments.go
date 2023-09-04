@@ -3,7 +3,7 @@ package cmdLs
 import (
 	"log"
 
-	kingpin "gopkg.in/alecthomas/kingpin.v2"
+	kingpin "github.com/alecthomas/kingpin/v2"
 )
 
 // declare the struct that holds all the arguments

@@ -16,7 +16,7 @@ import (
 	"github.com/acarl005/textcol"
 	colorable "github.com/mattn/go-colorable"
 	"github.com/willf/pad"
-	kingpin "gopkg.in/alecthomas/kingpin.v2"
+	kingpin "github.com/alecthomas/kingpin/v2"
 )
 
 // DisplayItem wraps the file stat info and string to be printed
