@@ -15,20 +15,24 @@ import (
 )
 
 type Cron struct {
+	name      string
 	Scheduler *gocron.Scheduler
 	Job       *gocron.Job
+
 	Error     error
 
 	cmd     *cobra.Command
 	SelfCmd *cobra.Command
 }
 
-func New() *Cron {
+func New(name string) *Cron {
 	var ret *Cron
 
 	for range Only.Once {
-		ret = &Cron{
+		ret = &Cron {
+			name:      name,
 			Scheduler: gocron.NewScheduler(time.Local),
+
 			Error:     nil,
 
 			cmd:     nil,

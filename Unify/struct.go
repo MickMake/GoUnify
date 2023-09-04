@@ -12,18 +12,21 @@ package Unify
 import (
 	"errors"
 	"fmt"
+	"path/filepath"
+	"time"
+
 	"github.com/MickMake/GoUnify/Only"
 	"github.com/MickMake/GoUnify/cmdConfig"
 	"github.com/MickMake/GoUnify/cmdCron"
 	"github.com/MickMake/GoUnify/cmdDaemon"
 	"github.com/MickMake/GoUnify/cmdHelp"
+	"github.com/MickMake/GoUnify/cmdRun"
+	"github.com/MickMake/GoUnify/cmdService"
 	"github.com/MickMake/GoUnify/cmdShell"
 	"github.com/MickMake/GoUnify/cmdVersion"
 	cc "github.com/ivanpirog/coloredcobra"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
-	"path/filepath"
-	"time"
 )
 
 
@@ -32,6 +35,7 @@ type Unify struct {
 	Flags    Flags    `json:"flags"`
 	Commands Commands `json:"commands"`
 
+	mergeRun bool
 	Error error `json:"-"`
 }
 
@@ -54,6 +58,7 @@ type Flags struct {
 	Quiet      bool          `json:"quiet"`
 	Debug      bool          `json:"debug"`
 	Timeout    time.Duration `json:"timeout"`
+	MergeRun   bool          `json:"merge_run"`
 }
 
 
@@ -70,7 +75,8 @@ func New(options Options, flags Flags) *Unify {
 		}
 		unify.Options.EnvPrefix = unify.GetEnvPrefix()
 
-		unify.Error = unify.InitCmds()
+		// MergeRun == true - Merge the commands "daemon", "cron", "shell", "service"
+		unify.Error = unify.InitCmds(flags.MergeRun)
 		if unify.Error != nil {
 			break
 		}
@@ -85,32 +91,35 @@ func New(options Options, flags Flags) *Unify {
 }
 
 // InitCmds -
-func (u *Unify) InitCmds() error {
+func (u *Unify) InitCmds(mergeRun bool) error {
 
 	for range Only.Once {
 		// ******************************************************************************** //
-		u.Commands.CmdRoot = &cobra.Command{
+		u.Commands.CmdRoot = &cobra.Command {
 			Use:              u.Options.BinaryName,
 			Short:            fmt.Sprintf("%s - %s", u.Options.BinaryName, u.Options.Description),
 			Long:             fmt.Sprintf("%s - %s", u.Options.BinaryName, u.Options.Description),
-			RunE:             CmdRoot,
+			RunE:             u.CmdRoot,
 			TraverseChildren: true,
 		}
 		u.Commands.CmdRoot.Example = cmdHelp.PrintExamples(u.Commands.CmdRoot, "")
+
+		u.Commands.CmdConfig = cmdConfig.New(u.Options.BinaryName, u.Options.BinaryVersion, u.Options.EnvPrefix)
 
 		u.Commands.CmdVersion = cmdVersion.New(u.Options.BinaryName, u.Options.BinaryVersion, false)
 		u.Commands.CmdVersion.SetBinaryRepo(u.Options.BinaryRepo)
 		u.Commands.CmdVersion.SetSourceRepo(u.Options.SourceRepo)
 
-		u.Commands.CmdDaemon = cmdDaemon.New()
-
-		u.Commands.CmdCron = cmdCron.New()
-
-		u.Commands.CmdConfig = cmdConfig.New(u.Options.BinaryName, u.Options.BinaryVersion, u.Options.EnvPrefix)
-
-		// u.Commands.CmdSystray = cmdSystray.New(u.Commands.CmdConfig, u.Commands.CmdVersion)
-
-		u.Commands.CmdShell = cmdShell.New(u.Options.BinaryName, u.Options.BinaryVersion, u.GetConfigDir())
+		u.mergeRun = mergeRun
+		if u.mergeRun {
+			u.Commands.CmdRun = cmdRun.New(u.Options.BinaryName, u.Options.BinaryVersion, u.Options.Description, u.GetConfigDir())
+		} else {
+			u.Commands.CmdDaemon = cmdDaemon.New(u.Options.BinaryName)
+			u.Commands.CmdCron = cmdCron.New(u.Options.BinaryName)
+			u.Commands.CmdShell = cmdShell.New(u.Options.BinaryName, u.Options.BinaryVersion, u.GetConfigDir())
+			u.Commands.CmdService = cmdService.New(u.Options.BinaryName, u.Options.Description, u.GetConfigDir())
+			// u.Commands.CmdSystray = cmdSystray.New(u.Commands.CmdConfig, u.Commands.CmdVersion)
+		}
 
 		u.Commands.CmdHelp = cmdHelp.New()
 		u.Commands.CmdHelp.SetCommand(u.Options.BinaryName)
@@ -148,14 +157,20 @@ func (u *Unify) InitFlags() error {
 
 // Execute -
 func (u *Unify) Execute() error {
-	var err error
+
 	for range Only.Once {
-		u.Commands.CmdVersion.AttachCommands(u.Commands.CmdRoot, true)
-		u.Commands.CmdDaemon.AttachCommands(u.Commands.CmdRoot)
-		// u.Commands.CmdSystray.AttachCommands(u.Commands.CmdRoot)
-		u.Commands.CmdCron.AttachCommands(u.Commands.CmdRoot)
+		if u.mergeRun {
+			u.Commands.CmdRun.AttachCommands(u.Commands.CmdRoot)
+		} else {
+			u.Commands.CmdDaemon.AttachCommands(u.Commands.CmdRoot)
+			u.Commands.CmdCron.AttachCommands(u.Commands.CmdRoot)
+			u.Commands.CmdShell.AttachCommands(u.Commands.CmdRoot)
+			u.Commands.CmdService.AttachCommands(u.Commands.CmdRoot)
+			// u.Commands.CmdSystray.AttachCommands(u.Commands.CmdRoot)
+		}
+
 		u.Commands.CmdConfig.AttachCommands(u.Commands.CmdRoot)
-		u.Commands.CmdShell.AttachCommands(u.Commands.CmdRoot)
+		u.Commands.CmdVersion.AttachCommands(u.Commands.CmdRoot, true)
 		u.Commands.CmdHelp.AttachCommands(u.Commands.CmdRoot)
 
 		if u.Flags.ConfigDir != "" {
@@ -198,12 +213,12 @@ func (u *Unify) Execute() error {
 			Aliases:         0,
 		})
 
-		err = u.Commands.Execute()
-		if err != nil {
+		u.Error = u.Commands.Execute()
+		if u.Error != nil {
 			break
 		}
 	}
-	return err
+	return u.Error
 }
 
 // GetCmd -
@@ -244,13 +259,17 @@ func (u *Unify) GetCacheDir() string {
 
 type Commands struct {
 	CmdRoot    *cobra.Command
-	CmdVersion *cmdVersion.Version
+	CmdRun     *cmdRun.Run
+
 	CmdDaemon  *cmdDaemon.Daemon
 	CmdCron    *cmdCron.Cron
+	CmdService *cmdService.Service
+	CmdShell   *cmdShell.Shell
+
+	CmdVersion *cmdVersion.Version
 	CmdConfig  *cmdConfig.Config
 	// CmdSystray *cmdSystray.Config
 	CmdHelp    *cmdHelp.Help
-	CmdShell   *cmdShell.Shell
 }
 
 // Execute -
@@ -260,11 +279,13 @@ func (c *Commands) Execute() error {
 
 
 // CmdRoot -
-func CmdRoot(_ *cobra.Command, args []string) error {
-	var err error
+func (u *Unify) CmdRoot(cmd *cobra.Command, args []string) error {
 	for range Only.Once {
-		// _ = cmd.Help()
-		err = errors.New(fmt.Sprintf("Unknown command string: %v\n", args))
+		if len(args) == 0 {
+			_ = cmd.Help()
+			break
+		}
+		u.Error = errors.New(fmt.Sprintf("Unknown command string: %v\n", args))
 	}
-	return err
+	return u.Error
 }

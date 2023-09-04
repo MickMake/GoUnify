@@ -2,19 +2,21 @@ package cmdDaemon
 
 import (
 	"fmt"
+	"os"
+	"strings"
+	"syscall"
+
 	"github.com/MickMake/GoUnify/Only"
 	"github.com/MickMake/GoUnify/cmdHelp"
 	"github.com/MickMake/GoUnify/cmdLog"
 	"github.com/MickMake/GoUnify/cmdPath"
+	"github.com/logrusorgru/aurora"
 	"github.com/sevlyar/go-daemon"
 	"github.com/spf13/cobra"
-	"os"
-	"strings"
-	"syscall"
 )
 
 
-const Group = "Daemon"
+const Group = "Run"
 
 func (d *Daemon) AttachCommands(cmd *cobra.Command) *cobra.Command {
 	for range Only.Once {
@@ -23,12 +25,14 @@ func (d *Daemon) AttachCommands(cmd *cobra.Command) *cobra.Command {
 		}
 		d.cmd = cmd
 
+		name := aurora.White(d.name).Bold()	// c.cmd.Name()
+
 		// ******************************************************************************** //
 		d.SelfCmd = &cobra.Command{
 			Use:                   CmdDaemon,
 			Aliases:               []string{},
-			Short:                 fmt.Sprintf("Daemonize commands."),
-			Long:                  fmt.Sprintf("Daemonize commands."),
+			Short:                 fmt.Sprintf("Daemonize %s.", name),
+			Long:                  fmt.Sprintf("Daemonize %s.", name),
 			DisableFlagParsing:    false,
 			DisableFlagsInUseLine: false,
 			PreRunE:               d.InitArgs,
@@ -43,8 +47,8 @@ func (d *Daemon) AttachCommands(cmd *cobra.Command) *cobra.Command {
 		var cmdDaemonExec = &cobra.Command{
 			Use:                   CmdDaemonExec,
 			Aliases:               AliasesDaemonExec,
-			Short:                 fmt.Sprintf("Execute commands as a daemon."),
-			Long:                  fmt.Sprintf("Execute commands as a daemon."),
+			Short:                 fmt.Sprintf("Execute %s as a daemon.", name),
+			Long:                  fmt.Sprintf("Execute %s as a daemon.", name),
 			DisableFlagParsing:    false,
 			DisableFlagsInUseLine: false,
 			PreRunE:               d.InitArgs,
@@ -61,8 +65,8 @@ func (d *Daemon) AttachCommands(cmd *cobra.Command) *cobra.Command {
 		var cmdDaemonKill = &cobra.Command{
 			Use:                   CmdDaemonStop,
 			Aliases:               AliasesDaemonStop,
-			Short:                 fmt.Sprintf("Terminate daemon."),
-			Long:                  fmt.Sprintf("Terminate daemon."),
+			Short:                 fmt.Sprintf("Terminate %s daemon.", name),
+			Long:                  fmt.Sprintf("Terminate %s daemon.", name),
 			DisableFlagParsing:    false,
 			DisableFlagsInUseLine: false,
 			PreRunE:               d.InitArgs,
@@ -80,8 +84,8 @@ func (d *Daemon) AttachCommands(cmd *cobra.Command) *cobra.Command {
 		var cmdDaemonReload = &cobra.Command{
 			Use:                   CmdDaemonReload,
 			Aliases:               AliasesDaemonReload,
-			Short:                 fmt.Sprintf("Reload daemon config."),
-			Long:                  fmt.Sprintf("Reload daemon config."),
+			Short:                 fmt.Sprintf("Reload %s daemon config.", name),
+			Long:                  fmt.Sprintf("Reload %s daemon config.", name),
 			DisableFlagParsing:    false,
 			DisableFlagsInUseLine: false,
 			PreRunE:               d.InitArgs,
@@ -99,8 +103,8 @@ func (d *Daemon) AttachCommands(cmd *cobra.Command) *cobra.Command {
 		var cmdDaemonList = &cobra.Command{
 			Use:                   CmdDaemonList,
 			Aliases:               AliasesDaemonList,
-			Short:                 fmt.Sprintf("List running daemon."),
-			Long:                  fmt.Sprintf("List running daemon."),
+			Short:                 fmt.Sprintf("List running daemons."),
+			Long:                  fmt.Sprintf("List running daemons."),
 			DisableFlagParsing:    false,
 			DisableFlagsInUseLine: false,
 			PreRunE:               d.InitArgs,

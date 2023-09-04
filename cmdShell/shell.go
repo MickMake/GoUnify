@@ -48,7 +48,8 @@ func New(name string, version string, configDir string) *Shell {
 
 func (s *Shell) RunShell() error {
 	for range Only.Once {
-		s.BuildCmd(s.cmd, nil)
+		s.cmd.Hidden = true		// Stop the command parent from being run within a shell.
+		s.BuildCmd(s.cmd.Root(), nil)
 		s.AddCmd(&ishell.Cmd {
 			Name:     "spinner",
 			Aliases:  []string{},
@@ -84,7 +85,8 @@ func (s *Shell) RunShell() error {
 			Name:     "?",
 			Aliases:  []string{},
 			Func: func(c *ishell.Context) {
-				_ = s.cmd.Help()
+				s.cmd.Hidden = true		// Stop the command parent from being run within a shell.
+				_ = s.cmd.Root().Help()
 			},
 			Help:     "",
 			LongHelp: "",
@@ -124,7 +126,8 @@ func (s *Shell) ReparseArgs(args ...string) error {
 
 		// rootCmd := cmdExec.FindRoot(cmd)
 		// rootCmd.SetArgs(os.Args)
-		s.Error = s.cmd.Execute()
+		s.cmd.Hidden = true		// Stop the command parent from being run within a shell.
+		s.Error = s.cmd.Root().Execute()
 		if s.Error != nil {
 			break
 		}

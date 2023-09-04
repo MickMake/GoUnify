@@ -2,17 +2,20 @@ package cmdCron
 
 import (
 	"fmt"
+	"os"
+	"strings"
+	"time"
+
 	"github.com/MickMake/GoUnify/Only"
 	"github.com/MickMake/GoUnify/cmdExec"
 	"github.com/MickMake/GoUnify/cmdHelp"
 	"github.com/MickMake/GoUnify/cmdLog"
+	"github.com/logrusorgru/aurora"
 	"github.com/spf13/cobra"
-	"os"
-	"strings"
-	"time"
 )
 
-const Group = "Cron"
+
+const Group = "Run"
 
 func (c *Cron) AttachCommands(cmd *cobra.Command) *cobra.Command {
 	for range Only.Once {
@@ -21,12 +24,14 @@ func (c *Cron) AttachCommands(cmd *cobra.Command) *cobra.Command {
 		}
 		c.cmd = cmd
 
+		name := aurora.White(c.name).Bold()	// c.cmd.Name()
+
 		// ******************************************************************************** //
 		c.SelfCmd = &cobra.Command{
 			Use:                   "cron",
 			Aliases:               []string{""},
-			Short:                 fmt.Sprintf("Run a command via schedule."),
-			Long:                  fmt.Sprintf("Run a command via schedule."),
+			Short:                 fmt.Sprintf("Run %s via schedule.", name),
+			Long:                  fmt.Sprintf("Run %s via schedule.", name),
 			DisableFlagParsing:    false,
 			DisableFlagsInUseLine: false,
 			PreRunE:               c.InitArgs,
@@ -41,8 +46,8 @@ func (c *Cron) AttachCommands(cmd *cobra.Command) *cobra.Command {
 		var cmdCronRun = &cobra.Command{
 			Use:                   "run <minute> <hour> <month day> <month> <week day>  <command>  <args ...>",
 			Aliases:               []string{""},
-			Short:                 fmt.Sprintf("Run scheduled a command."),
-			Long:                  fmt.Sprintf("Run scheduled a command."),
+			Short:                 fmt.Sprintf("Schedule %s to run.", name),
+			Long:                  fmt.Sprintf("Schedule %s to run.", name),
 			DisableFlagParsing:    false,
 			DisableFlagsInUseLine: false,
 			PreRunE:               c.InitArgs,
@@ -63,8 +68,8 @@ func (c *Cron) AttachCommands(cmd *cobra.Command) *cobra.Command {
 		var cmdCronAdd = &cobra.Command{
 			Use:                   "add",
 			Aliases:               []string{""},
-			Short:                 fmt.Sprintf("Add scheduled a command."),
-			Long:                  fmt.Sprintf("Add scheduled a command."),
+			Short:                 fmt.Sprintf("Add %s to schedule.", name),
+			Long:                  fmt.Sprintf("Add %s to schedule.", name),
 			DisableFlagParsing:    false,
 			DisableFlagsInUseLine: false,
 			PreRunE:               c.InitArgs,
@@ -79,8 +84,8 @@ func (c *Cron) AttachCommands(cmd *cobra.Command) *cobra.Command {
 		var cmdCronRemove = &cobra.Command{
 			Use:                   "del",
 			Aliases:               []string{"remove"},
-			Short:                 fmt.Sprintf("Remove a scheduled command."),
-			Long:                  fmt.Sprintf("Remove a scheduled command."),
+			Short:                 fmt.Sprintf("Remove %s from schedule.", name),
+			Long:                  fmt.Sprintf("Remove %s from schedule.", name),
 			DisableFlagParsing:    false,
 			DisableFlagsInUseLine: false,
 			PreRunE:               c.InitArgs,

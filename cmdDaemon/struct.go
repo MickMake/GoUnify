@@ -7,20 +7,23 @@ import (
 )
 
 type Daemon struct {
-	Error error
 	cntxt *daemon.Context
+	name  string
+
+	Error error
 
 	cmd     *cobra.Command
 	SelfCmd *cobra.Command
 }
 
-func New() *Daemon {
+func New(name string) *Daemon {
 	var ret *Daemon
 
 	for range Only.Once {
-		ret = &Daemon{
-			Error: nil,
+		ret = &Daemon {
 			cntxt: &daemon.Context{},
+			name: name,
+			Error: nil,
 
 			cmd:     nil,
 			SelfCmd: nil,

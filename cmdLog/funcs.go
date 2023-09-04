@@ -1,13 +1,15 @@
 package cmdLog
 
 import (
-	"github.com/MickMake/GoUnify/Only"
 	"fmt"
 	"log"
 	"os"
 	"path/filepath"
 	"time"
+
+	"github.com/MickMake/GoUnify/Only"
 )
+
 
 var logFile string
 var logFileHandle *os.File
@@ -79,6 +81,7 @@ func LogSprintfDate(format string, args ...interface{}) string {
 
 type Log struct {
 	*os.File
+	logLevel int
 	err error
 }
 

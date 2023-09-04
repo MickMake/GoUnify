@@ -1,13 +1,16 @@
 package cmdShell
 
 import (
+	"fmt"
+
 	"github.com/MickMake/GoUnify/Only"
 	"github.com/MickMake/GoUnify/cmdHelp"
+	"github.com/logrusorgru/aurora"
 	"github.com/spf13/cobra"
 )
 
 
-const Group = "Shell"
+const Group = "Run"
 
 func (s *Shell) AttachCommands(cmd *cobra.Command) *cobra.Command {
 	for range Only.Once {
@@ -16,12 +19,14 @@ func (s *Shell) AttachCommands(cmd *cobra.Command) *cobra.Command {
 		}
 		s.cmd = cmd
 
+		name := aurora.White(s.name).Bold()	// c.cmd.Name()
+
 		// ******************************************************************************** //
 		s.SelfCmd = &cobra.Command{
 			Use:                   "shell",
 			Aliases:               []string{},
-			Short:                 "Run as an interactive shell.",
-			Long:                  "Run as an interactive shell.",
+			Short:                 fmt.Sprintf("Run %s as an interactive shell.", name),
+			Long:                  fmt.Sprintf("Run %s as an interactive shell.", name),
 			DisableFlagParsing:    false,
 			DisableFlagsInUseLine: false,
 			PreRunE:               s.InitArgs,
